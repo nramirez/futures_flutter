@@ -17,9 +17,15 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(title: const Text("Futures in Flutter")),
         body: FutureBuilder(
-            future: Future.error("No Existe"),
+            future:
+                Future.delayed(const Duration(seconds: 5), () => "Hola Naz"),
             builder: (context, snapshot) {
               Widget content = const Text("cargando perfil...");
+
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                content = const CircularProgressIndicator();
+              }
+
               if (snapshot.hasError) {
                 content = Text(
                   snapshot.error.toString(),
