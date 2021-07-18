@@ -16,12 +16,28 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(title: const Text("Futures in Flutter")),
-        body: const Center(
-          child: Text(
-            "Cargando perfil",
-            style: TextStyle(fontSize: 20),
-          ),
-        ),
+        body: FutureBuilder(
+            future: Future.error("No Existe"),
+            builder: (context, snapshot) {
+              Widget content = const Text("cargando perfil...");
+              if (snapshot.hasError) {
+                content = Text(
+                  snapshot.error.toString(),
+                  style: const TextStyle(fontSize: 20, color: Colors.red),
+                );
+              }
+
+              if (snapshot.hasData) {
+                content = Text(
+                  snapshot.data.toString(),
+                  style: const TextStyle(fontSize: 20),
+                );
+              }
+
+              return Center(
+                child: content,
+              );
+            }),
       ),
     );
   }
