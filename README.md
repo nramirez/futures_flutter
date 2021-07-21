@@ -1,6 +1,6 @@
 # Ejemplos de streams en flutter
 
-Video: 
+Video: https://youtu.be/HxVoTRCkFZQ
 
 ```dart
 // crear un stream
