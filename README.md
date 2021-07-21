@@ -1,6 +1,4 @@
-# futures_flutter
+# Futures Flutter
 
-Ejemplos de como usar Futures en flutter
-
-
-Este repo es solo una demostración para este video: https://youtu.be/Y-iO730kIZI
+Video: https://youtu.be/Y-iO730kIZI
+Ejemplos de stream en: https://github.com/nramirez/futures_flutter/tree/stream
