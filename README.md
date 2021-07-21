@@ -2,33 +2,34 @@
 
 Video: 
 
-```
-    // crear un stream
-    Stream.value(5);
-    // crear un stream que devuelve un error
-    Stream.error("Sin Internet");
-    
-    // crear un stream que emite un valor cada segundo
-    var st = var st = Stream.periodic(Duration(seconds: 1), (t) => t);
+```dart
+// crear un stream
+Stream.value(5);
 
-    // Solo se puede escuchar el stream una vez por aplicación.
-    // st.asBroadcastStream()
-    // permite escuchar un stream mas de una vez por aplicación
+// crear un stream que devuelve un error
+Stream.error("Sin Internet");
 
-    // Como escuchar los valores de un stream
-    var lst = st.listen((v) => print("PRIMER LISTEN: " + v), 
-                      onError: (e) => print("Problema manito: " + e));
+// crear un stream que emite un valor cada segundo
+var st = var st = Stream.periodic(Duration(seconds: 1), (t) => t);
 
-    // Este liste puede ser pausado, resumido o cancelado con:
-    lst.pause();
-    lst.resume();
-    lst.cancel();
+// Solo se puede escuchar el stream una vez por aplicación.
+// st.asBroadcastStream()
+// permite escuchar un stream mas de una vez por aplicación
+
+// Como escuchar los valores de un stream
+var lst = st.listen((v) => print("PRIMER LISTEN: " + v), 
+    onError: (e) => print("Problema manito: " + e));
+
+// Este liste puede ser pausado, resumido o cancelado con:
+lst.pause();
+lst.resume();
+lst.cancel();
+
 ```
 
 Como crear un stream
 
-```
-
+```dart
 class Macarena {
   Macarena() {
     Timer.periodic(const Duration(seconds: 3), (t) {
