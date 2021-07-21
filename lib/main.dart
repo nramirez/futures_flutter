@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,11 +18,11 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(title: const Text("Futures in Flutter")),
-        body: FutureBuilder(
-            future:
-                Future.delayed(const Duration(seconds: 5), () => "Hola Naz"),
+        body: StreamBuilder(
+            stream: Macarena().stream,
             builder: (context, snapshot) {
               Widget content = const Text("cargando perfil...");
+              print(snapshot.connectionState);
 
               if (snapshot.connectionState == ConnectionState.waiting) {
                 content = const CircularProgressIndicator();
@@ -47,4 +49,27 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+class Macarena {
+  Macarena() {
+    Timer.periodic(const Duration(seconds: 3), (t) {
+      if (t.tick > letras.length) {
+        t.cancel();
+        _controller.close();
+      } else {
+        _controller.sink.add(letras.elementAt(t.tick - 1));
+      }
+    });
+  }
+  final _controller = StreamController<String>();
+
+  List<String> letras = [
+    "Dale a tu cuerpo alegría Macarena",
+    "Que tu cuerpo es pa' darle alegría y cosa buena",
+    "Dale a tu cuerpo alegría Macarena",
+    "Hey Macarena",
+  ];
+
+  Stream<String> get stream => _controller.stream;
 }
